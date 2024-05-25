@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Units Converter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+            background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        input, select, button {
+            font-family: 'Poppins', Arial, sans-serif;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            width: calc(100% - 20px); /* Adjusted width to account for padding */
+        }
+
+        input[type="number"] {
+            background-color: #fff; /* White background for input field */
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #007bff;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        input:hover, select:hover, button:hover {
+            background-color: #0056b3;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        .result {
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Units Converter</h1>
+        <select id="fromUnit">
+            <option value="meter">Meter</option>
+            <option value="centimeter">Centimeter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Inch</option>
+            <option value="foot">Foot</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+            <option value="gram">Gram</option>
+            <option value="kilogram">Kilogram</option>
+            <option value="pound">Pound</option>
+            <option value="ounce">Ounce</option>
+            <option value="liter">Liter</option>
+            <option value="milliliter">Milliliter</option>
+            <option value="gallon">Gallon</option>
+            <option value="quart">Quart</option>
+            <option value="pint">Pint</option>
+            <option value="cup">Cup</option>
+        </select>
+        <input type="number" id="value" placeholder="Enter value">
+        <select id="toUnit">
+            <option value="meter">Meter</option>
+            <option value="centimeter">Centimeter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Inch</option>
+            <option value="foot">Foot</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+            <option value="gram">Gram</option>
+            <option value="kilogram">Kilogram</option>
+            <option value="pound">Pound</option>
+            <option value="ounce">Ounce</option>
+            <option value="liter">Liter</option>
+            <option value="milliliter">Milliliter</option>
+            <option value="gallon">Gallon</option>
+            <option value="quart">Quart</option>
+            <option value="pint">Pint</option>
+            <option value="cup">Cup</option>
+        </select>
+        <button onclick="convert()">Convert</button>
+        <div class="result" id="result"></div>
+        <button onclick="location.href='home.html'">Back</button>
+    </div>
+    <script>
+        function convert() {
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            const value = parseFloat(document.getElementById('value').value);
+
+            if (!isNaN(value)) {
+                let result;
+                switch (fromUnit) {
+                    case 'meter':
+                        result = convertLength(value, toUnit);
+                        break;
+                    case 'centimeter':
+                        result = convertLength(value / 100, toUnit);
+                        break;
+                    case 'kilometer':
+                        result = convertLength(value * 1000, toUnit);
+                        break;
+                    case 'inch':
+                        result = convertLength(value * 0.0254, toUnit);
+                        break;
+                    case 'foot':
+                        result = convertLength(value * 0.3048, toUnit);
+                        break;
+                    case 'yard':
+                        result = convertLength(value * 0.9144, toUnit);
+                        break;
+                    case 'mile':
+                        result = convertLength(value * 1609.34, toUnit);
+                        break;
+                    case 'gram':
+                        result = convertWeight(value, toUnit);
+                        break;
+                    case 'kilogram':
+                        result = convertWeight(value * 1000, toUnit);
+                        break;
+                    case 'pound':
+                        result = convertWeight(value * 453.592, toUnit);
+                        break;
+                    case 'ounce':
+                        result = convertWeight(value * 28.3495, toUnit);
+                        break;
+                    case 'liter':
+                        result = convertVolume(value, toUnit);
+                        break;
+                    case 'milliliter':
+                        result = convertVolume(value / 1000, toUnit);
+                        break;
+                    case 'gallon':
+                        result = convertVolume(value * 3.78541, toUnit);
+                        break;
+                    case 'quart':
+                        result = convertVolume(value * 0.946353, toUnit);
+                        break;
+                    case 'pint':
+                        result = convertVolume(value * 0.473176, toUnit);
+                        break;
+                    case 'cup':
+                        result = convertVolume(value * 0.236588, toUnit);
+                        break;
+                }
+                document.getElementById('result').textContent = `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+            } else {
+                document.getElementById('result').textContent = "Please enter a valid number.";
+            }
+        }
+
+        function convertLength(value, toUnit) {
+            switch (toUnit) {
+                case 'meter':
+                    return value;
+                case 'centimeter':
+                    return value * 100;
+                case 'kilometer':
+                    return value / 1000;
+                case 'inch':
+                    return value / 0.0254;
+                case 'foot':
+                    return value / 0.3048;
+                case 'yard':
+                    return value / 0.9144;
+                case 'mile':
+                    return value / 1609.34;
+                default:
+                    return NaN;
+            }
+        }
+
+        function convertWeight(value, toUnit) {
+            switch (toUnit) {
+                case 'gram':
+                    return value;
+                case 'kilogram':
+                    return value / 1000;
+                case 'pound':
+                    return value / 453.592;
+                case 'ounce':
+                    return value / 28.3495;
+                default:
+                    return NaN;
+            }
+        }
+
+        function convertVolume(value, toUnit) {
+            switch (toUnit) {
+                case 'liter':
+                    return value;
+                case 'milliliter':
+                    return value * 1000;
+                case 'gallon':
+                    return value / 3.78541;
+                case 'quart':
+                    return value / 0.946353;
+                case 'pint':
+                    return value / 0.473176;
+                case 'cup':
+                    return value / 0.236588;
+                default:
+                    return NaN;
+            }
+        }
+    </script>
+</body>
+</html>
