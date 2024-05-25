@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        h1 {
+            width: 100%;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 3em;
+            background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 150px;
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .box:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 45%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .box {
+                width: 80%;
+                padding: 15px;
+            }
+
+            .icon {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .box {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .icon {
+                font-size: 30px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Converter</h1>
+        <div class="box" onclick="location.href='worldclock.html'">
+            <i class="fas fa-globe icon"></i>
+            <div>World Clock</div>
+        </div>
+        <div class="box" onclick="location.href='temperature.html'">
+            <i class="fas fa-thermometer-half icon"></i>
+            <div>Temperature Conversion</div>
+        </div>
+        <div class="box" onclick="location.href='units.html'">
+            <i class="fas fa-ruler-combined icon"></i>
+            <div>Units Conversion</div>
+        </div>
+        <div class="box" onclick="location.href='currency.html'">
+            <i class="fas fa-dollar-sign icon"></i>
+            <div>Currency Conversion</div>
+        </div>
+    </div>
+
+    <footer>&copy; <b>Anantha Abhijeet</b></footer>
+</body>
+</html>
